@@ -5,17 +5,18 @@ import {
   PublicKey,
   Transaction,
 } from "@solana/web3.js";
-import { Metaplex } from "@metaplex-foundation/js";
 import { WalletContextState } from "@solana/wallet-adapter-react";
-import { getRemainingAccountsByGuardType } from "./getRemainingAccountsByGuardType";
-import mintV2Instruction from "./mintV2Instruction";
+import {
+  getMxState,
+  getRemainingAccountsByGuardType,
+  mintV2Instruction,
+} from "./mXStore";
 
 const mintNftV3 = async (
   connection: Connection,
   minterWallet: WalletContextState
 ) => {
-  const METAPLEX = Metaplex.make(connection);
-
+  const { METAPLEX } = getMxState(connection);
   const candyMachine = await METAPLEX.candyMachines().findByAddress({
     address: new PublicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID!),
   });

@@ -1,4 +1,11 @@
 import {
+  SolPaymentGuardSettings,
+  Option,
+  keypairIdentity,
+  Metaplex,
+} from "@metaplex-foundation/js";
+import bs58 from "bs58";
+import {
   Connection,
   Keypair,
   PublicKey,
@@ -25,7 +32,6 @@ import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
-import { Metaplex } from "@metaplex-foundation/js";
 
 export const CANDY_MACHINE_PROGRAM = PROGRAM_ID;
 export const METAPLEX_PROGRAM_ID = new PublicKey(
@@ -34,7 +40,7 @@ export const METAPLEX_PROGRAM_ID = new PublicKey(
 
 /** To mint from the candy guard as a minter */
 /** From: https://github.com/metaplex-foundation/mpl-candy-guard/blob/main/js/test/setup/txs-init.ts#L679  */
-const mintV2Instruction = async (
+export const mintV2Instruction = async (
   candyGuard: PublicKey,
   candyMachine: PublicKey,
   minter: PublicKey,
@@ -170,4 +176,43 @@ const mintV2Instruction = async (
   return { instructions: ixs };
 };
 
-export default mintV2Instruction;
+export const getMxState = (connection: Connection) => {
+  const bytesString = bs58.decode(process.env.NEXT_PUBLIC_CM_UPDATE_AUTHORITY!);
+  const KP = Keypair.fromSecretKey(bytesString);
+  const METAPLEX = Metaplex.make(connection).use(keypairIdentity(KP));
+
+  return { METAPLEX, KP };
+};
+
+export const getRemainingAccountsByGuardType = (
+  guard: Option<SolPaymentGuardSettings | object>,
+  guardType: string
+) => {
+  const remainingAccs: {
+    [key: string]: () => AccountMeta[];
+  } = {
+    solPayment: () => {
+      const solPaymentGuard = guard as SolPaymentGuardSettings;
+
+      return [
+        {
+          pubkey: solPaymentGuard.destination,
+          isSigner: false,
+          isWritable: true,
+        },
+      ];
+    },
+  };
+
+  if (!remainingAccs[guardType]) {
+    console.warn(
+      "Couldn't find remaining accounts for Guard " +
+        guardType +
+        ". This can most likely cause the mint tx to fail."
+    );
+
+    return [];
+  }
+
+  return remainingAccs[guardType]();
+};

@@ -12,10 +12,25 @@ import {
   MintInfosContainer,
   MintInfoTitle,
 } from "@/styles/home";
+import { useEffect, useState } from "react";
+import { PublicKey } from "@solana/web3.js";
+import { getMxState } from "@/utils/mxFunction/mXStore";
 
 export default function Home() {
+  const [candyMachine, setCandyMachine] = useState<any>(null);
   const { connection } = useConnection();
   const wallet = useWallet();
+
+  useEffect(() => {
+    (async () => {
+      const { METAPLEX } = getMxState(connection);
+      const candyMachine = await METAPLEX.candyMachines().findByAddress({
+        address: new PublicKey(process.env.NEXT_PUBLIC_CANDY_MACHINE_ID!),
+      });
+
+      setCandyMachine(candyMachine);
+    })();
+  }, []);
 
   return (
     <HomeContainer>
@@ -25,7 +40,9 @@ export default function Home() {
             <MintInfoLeftContainer>
               <MintInfoContainer>
                 <MintInfoTitle>Remaining</MintInfoTitle>
-                <MintInfoData>8</MintInfoData>
+                <MintInfoData>
+                  {candyMachine?.itemsRemaining.toNumber() ?? ""}
+                </MintInfoData>
               </MintInfoContainer>
               <MintInfoContainer>
                 <MintInfoTitle>Price</MintInfoTitle>
