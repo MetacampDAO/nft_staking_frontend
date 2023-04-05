@@ -56,7 +56,7 @@ export default function Home() {
           <CTAButton onClick={() => mintNftV3(connection, wallet)}>
             Mint
           </CTAButton>
-          <CTAButton onClick={() => verifyMint(connection)}>Verify</CTAButton>
+          {/* <CTAButton onClick={() => verifyMint(connection)}>Verify</CTAButton> */}
         </CTAInfoContainer>
       </CTAContainer>
     </HomeContainer>
