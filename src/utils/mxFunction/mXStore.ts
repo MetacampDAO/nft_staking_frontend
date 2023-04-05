@@ -177,11 +177,9 @@ export const mintV2Instruction = async (
 };
 
 export const getMxState = (connection: Connection) => {
-  const bytesString = bs58.decode(process.env.NEXT_PUBLIC_CM_UPDATE_AUTHORITY!);
-  const KP = Keypair.fromSecretKey(bytesString);
-  const METAPLEX = Metaplex.make(connection).use(keypairIdentity(KP));
+  const METAPLEX = Metaplex.make(connection);
 
-  return { METAPLEX, KP };
+  return { METAPLEX };
 };
 
 export const getRemainingAccountsByGuardType = (
