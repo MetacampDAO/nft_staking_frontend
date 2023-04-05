@@ -14,7 +14,7 @@ import {
 } from "@/styles/home";
 import { useEffect, useState } from "react";
 import { PublicKey } from "@solana/web3.js";
-import { getMxState } from "@/utils/mxFunction/mXStore";
+import { getMxState, verifyMint } from "@/utils/mxFunction/mXStore";
 
 export default function Home() {
   const [candyMachine, setCandyMachine] = useState<any>(null);
@@ -56,6 +56,7 @@ export default function Home() {
           <CTAButton onClick={() => mintNftV3(connection, wallet)}>
             Mint
           </CTAButton>
+          <CTAButton onClick={() => verifyMint(connection)}>Verify</CTAButton>
         </CTAInfoContainer>
       </CTAContainer>
     </HomeContainer>

@@ -182,6 +182,33 @@ export const getMxState = (connection: Connection) => {
   return { METAPLEX };
 };
 
+export const verifyMint = async (connection: Connection) => {
+  const bytesString = bs58.decode(process.env.NEXT_PUBLIC_CM_UPDATE_AUTHORITY!);
+  const KP = Keypair.fromSecretKey(bytesString);
+  const METAPLEX = Metaplex.make(connection).use(keypairIdentity(KP));
+
+  const nftMetadata = await METAPLEX.nfts().findByMint({
+    mintAddress: new PublicKey("HAczgDq7orzn3zoW3KQuaNx1zR3eaycwK42ZF4iJGZLr"),
+  });
+
+  await METAPLEX.nfts().update({
+    nftOrSft: nftMetadata,
+    creators: [
+      {
+        address: new PublicKey("FfMRMUhPzmGafrCG4YopZQJrmjM6cY6XxgT5t6Wh5nfW"),
+        share: 0,
+      },
+      {
+        address: new PublicKey("Hoog9j2SyeJKha1jWBfba3qtx433zm45eiTn7nWwM4gm"),
+        share: 100,
+        authority: KP,
+      },
+    ],
+  });
+
+  return { METAPLEX };
+};
+
 export const getRemainingAccountsByGuardType = (
   guard: Option<SolPaymentGuardSettings | object>,
   guardType: string
