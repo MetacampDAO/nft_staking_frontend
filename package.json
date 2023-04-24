@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@metaplex-foundation/js": "^0.18.3",
-    "@metaplex-foundation/mpl-candy-guard": "^0.4.1",
-    "@metaplex-foundation/mpl-candy-machine-core": "^0.2.1",
+    "@project-serum/anchor": "^0.26.0",
+    "@solana/spl-token": "^0.3.7",
     "@solana/wallet-adapter-base": "^0.9.22",
     "@solana/wallet-adapter-react": "^0.15.32",
     "@solana/wallet-adapter-react-ui": "^0.9.31",
@@ -21,6 +21,7 @@
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "bs58": "^5.0.0",
+    "dotenv": "^16.0.3",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
     "next": "13.2.4",
@@ -31,5 +32,10 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
