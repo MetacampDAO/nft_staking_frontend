@@ -4,7 +4,7 @@ import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { Demo } from "./idl/demo";
 import { Connection } from "@solana/web3.js";
 
-export const getUserInfo = async (
+export const getUserInfoData = async (
   program: anchor.Program<Demo>,
   userPubkey: PublicKey
 ) => {
@@ -15,11 +15,15 @@ export const getUserInfo = async (
     ],
     program.programId
   );
-  const userInfoData = await program.account.userInfo.fetch(userInfo);
-  return userInfoData;
+  try {
+    const userInfoData = await program.account.userInfo.fetch(userInfo);
+    return userInfoData;
+  } catch (error) {
+    return null;
+  }
 };
 
-export const getAllUserStakeInfo = async (
+export const getAllUserStakeNft = async (
   program: anchor.Program<Demo>,
   userPubkey: PublicKey
 ) => {
@@ -49,6 +53,7 @@ const MINT1 = "E77GQLENiyjomuq15BVH2c7AHhhNFjQ8nagmQJQmuzyS";
 const MINT2 = "CGhZc8ReBVGoCkbfPnsXYSqCWAcny1YU9aR2GW3MWaoG";
 const COLLECTION_MINT = [MINT1, MINT2];
 
+// UPDATE AMOUNT TO DISPLAY ONLY NON-DELEGATED
 export const getAllMintOwnedByUser = async (
   connection: Connection,
   userPubkey: PublicKey
@@ -70,16 +75,11 @@ export const getAllMintOwnedByUser = async (
   return data;
 };
 
-export const getProgramPdaAddress = async (
+export const getAllUserPda = async (
   program: anchor.Program<Demo>,
   staker: PublicKey,
   mint: PublicKey
 ) => {
-  const metaplex = new Metaplex(program.provider.connection);
-  const { metadataAddress } = await metaplex
-    .nfts()
-    .findByMint({ mintAddress: mint });
-
   const [userStakeInfo, _userStakeInfoBump] = PublicKey.findProgramAddressSync(
     [
       Buffer.from(anchor.utils.bytes.utf8.encode("stake_info")),
@@ -102,7 +102,6 @@ export const getProgramPdaAddress = async (
   );
 
   return {
-    metadataAddress,
     userNftAccount,
     pdaNftAccount,
     userStakeInfo,

@@ -1,449 +1,439 @@
 export type Demo = {
-  version: "0.1.0";
-  name: "demo";
-  instructions: [
+  "version": "0.1.0",
+  "name": "demo",
+  "instructions": [
     {
-      name: "stake";
-      accounts: [
+      "name": "stake",
+      "accounts": [
         {
-          name: "userInfo";
-          isMut: true;
-          isSigner: false;
+          "name": "userInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "stakingInfo";
-          isMut: true;
-          isSigner: false;
+          "name": "stakingInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "initializer";
-          isMut: true;
-          isSigner: true;
+          "name": "initializer",
+          "isMut": true,
+          "isSigner": true
         },
         {
-          name: "userNftAccount";
-          isMut: true;
-          isSigner: false;
+          "name": "userNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "pdaNftAccount";
-          isMut: true;
-          isSigner: false;
+          "name": "pdaNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "nftMetadata";
-          isMut: false;
-          isSigner: false;
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "mint";
-          isMut: false;
-          isSigner: false;
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "tokenProgram";
-          isMut: false;
-          isSigner: false;
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "associatedTokenProgram";
-          isMut: false;
-          isSigner: false;
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "systemProgram";
-          isMut: false;
-          isSigner: false;
-        },
-        {
-          name: "rent";
-          isMut: false;
-          isSigner: false;
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
         }
-      ];
-      args: [];
+      ],
+      "args": []
     },
     {
-      name: "redeem";
-      accounts: [
+      "name": "redeem",
+      "accounts": [
         {
-          name: "userInfo";
-          isMut: true;
-          isSigner: false;
+          "name": "userInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "stakingInfo";
-          isMut: true;
-          isSigner: false;
+          "name": "stakingInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "payer";
-          isMut: true;
-          isSigner: true;
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
         },
         {
-          name: "pdaNftAccount";
-          isMut: false;
-          isSigner: false;
+          "name": "pdaNftAccount",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "mint";
-          isMut: false;
-          isSigner: false;
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "systemProgram";
-          isMut: false;
-          isSigner: false;
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         }
-      ];
-      args: [];
+      ],
+      "args": []
     },
     {
-      name: "unstake";
-      accounts: [
+      "name": "unstake",
+      "accounts": [
         {
-          name: "userInfo";
-          isMut: true;
-          isSigner: false;
+          "name": "userInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "stakingInfo";
-          isMut: true;
-          isSigner: false;
+          "name": "stakingInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "initializer";
-          isMut: true;
-          isSigner: true;
+          "name": "initializer",
+          "isMut": true,
+          "isSigner": true
         },
         {
-          name: "userNftAccount";
-          isMut: true;
-          isSigner: false;
+          "name": "userNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "pdaNftAccount";
-          isMut: true;
-          isSigner: false;
+          "name": "pdaNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "mint";
-          isMut: false;
-          isSigner: false;
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "tokenProgram";
-          isMut: false;
-          isSigner: false;
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "systemProgram";
-          isMut: false;
-          isSigner: false;
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         }
-      ];
-      args: [];
+      ],
+      "args": []
     }
-  ];
-  accounts: [
+  ],
+  "accounts": [
     {
-      name: "userInfo";
-      type: {
-        kind: "struct";
-        fields: [
+      "name": "userInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
           {
-            name: "isInitialized";
-            type: "bool";
+            "name": "isInitialized",
+            "type": "bool"
           },
           {
-            name: "pointBalance";
-            type: "u64";
+            "name": "pointBalance",
+            "type": "u64"
           },
           {
-            name: "activeStake";
-            type: "u16";
+            "name": "activeStake",
+            "type": "u16"
           }
-        ];
-      };
+        ]
+      }
     },
     {
-      name: "userStakeInfo";
-      type: {
-        kind: "struct";
-        fields: [
+      "name": "userStakeInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
           {
-            name: "staker";
-            type: "publicKey";
+            "name": "owner",
+            "type": "publicKey"
           },
           {
-            name: "mint";
-            type: "publicKey";
+            "name": "mint",
+            "type": "publicKey"
           },
           {
-            name: "stakeStartTime";
-            type: "u64";
+            "name": "stakeStartTime",
+            "type": "u64"
           },
           {
-            name: "lastStakeRedeem";
-            type: "u64";
+            "name": "lastStakeRedeem",
+            "type": "u64"
           },
           {
-            name: "stakeState";
-            type: {
-              defined: "StakeState";
-            };
+            "name": "stakeState",
+            "type": {
+              "defined": "StakeState"
+            }
           }
-        ];
-      };
+        ]
+      }
     }
-  ];
-  types: [
+  ],
+  "types": [
     {
-      name: "StakeState";
-      type: {
-        kind: "enum";
-        variants: [
+      "name": "StakeState",
+      "type": {
+        "kind": "enum",
+        "variants": [
           {
-            name: "Stake";
+            "name": "Stake"
           },
           {
-            name: "Unstake";
+            "name": "Unstake"
           }
-        ];
-      };
+        ]
+      }
     }
-  ];
-  errors: [
+  ],
+  "errors": [
     {
-      code: 6000;
-      name: "InvalidNftCollection";
-      msg: "NFT isn't part of collection";
+      "code": 6000,
+      "name": "InvalidNftCollection",
+      "msg": "NFT isn't part of collection"
     }
-  ];
+  ]
 };
 
 export const IDL: Demo = {
-  version: "0.1.0",
-  name: "demo",
-  instructions: [
+  "version": "0.1.0",
+  "name": "demo",
+  "instructions": [
     {
-      name: "stake",
-      accounts: [
+      "name": "stake",
+      "accounts": [
         {
-          name: "userInfo",
-          isMut: true,
-          isSigner: false,
+          "name": "userInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "stakingInfo",
-          isMut: true,
-          isSigner: false,
+          "name": "stakingInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "initializer",
-          isMut: true,
-          isSigner: true,
+          "name": "initializer",
+          "isMut": true,
+          "isSigner": true
         },
         {
-          name: "userNftAccount",
-          isMut: true,
-          isSigner: false,
+          "name": "userNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "pdaNftAccount",
-          isMut: true,
-          isSigner: false,
+          "name": "pdaNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "nftMetadata",
-          isMut: false,
-          isSigner: false,
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "mint",
-          isMut: false,
-          isSigner: false,
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "tokenProgram",
-          isMut: false,
-          isSigner: false,
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "associatedTokenProgram",
-          isMut: false,
-          isSigner: false,
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "systemProgram",
-          isMut: false,
-          isSigner: false,
-        },
-        {
-          name: "rent",
-          isMut: false,
-          isSigner: false,
-        },
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        }
       ],
-      args: [],
+      "args": []
     },
     {
-      name: "redeem",
-      accounts: [
+      "name": "redeem",
+      "accounts": [
         {
-          name: "userInfo",
-          isMut: true,
-          isSigner: false,
+          "name": "userInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "stakingInfo",
-          isMut: true,
-          isSigner: false,
+          "name": "stakingInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "payer",
-          isMut: true,
-          isSigner: true,
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
         },
         {
-          name: "pdaNftAccount",
-          isMut: false,
-          isSigner: false,
+          "name": "pdaNftAccount",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "mint",
-          isMut: false,
-          isSigner: false,
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "systemProgram",
-          isMut: false,
-          isSigner: false,
-        },
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
       ],
-      args: [],
+      "args": []
     },
     {
-      name: "unstake",
-      accounts: [
+      "name": "unstake",
+      "accounts": [
         {
-          name: "userInfo",
-          isMut: true,
-          isSigner: false,
+          "name": "userInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "stakingInfo",
-          isMut: true,
-          isSigner: false,
+          "name": "stakingInfo",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "initializer",
-          isMut: true,
-          isSigner: true,
+          "name": "initializer",
+          "isMut": true,
+          "isSigner": true
         },
         {
-          name: "userNftAccount",
-          isMut: true,
-          isSigner: false,
+          "name": "userNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "pdaNftAccount",
-          isMut: true,
-          isSigner: false,
+          "name": "pdaNftAccount",
+          "isMut": true,
+          "isSigner": false
         },
         {
-          name: "mint",
-          isMut: false,
-          isSigner: false,
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "tokenProgram",
-          isMut: false,
-          isSigner: false,
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
-          name: "systemProgram",
-          isMut: false,
-          isSigner: false,
-        },
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
       ],
-      args: [],
-    },
+      "args": []
+    }
   ],
-  accounts: [
+  "accounts": [
     {
-      name: "userInfo",
-      type: {
-        kind: "struct",
-        fields: [
+      "name": "userInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
           {
-            name: "isInitialized",
-            type: "bool",
+            "name": "isInitialized",
+            "type": "bool"
           },
           {
-            name: "pointBalance",
-            type: "u64",
+            "name": "pointBalance",
+            "type": "u64"
           },
           {
-            name: "activeStake",
-            type: "u16",
-          },
-        ],
-      },
+            "name": "activeStake",
+            "type": "u16"
+          }
+        ]
+      }
     },
     {
-      name: "userStakeInfo",
-      type: {
-        kind: "struct",
-        fields: [
+      "name": "userStakeInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
           {
-            name: "staker",
-            type: "publicKey",
+            "name": "owner",
+            "type": "publicKey"
           },
           {
-            name: "mint",
-            type: "publicKey",
+            "name": "mint",
+            "type": "publicKey"
           },
           {
-            name: "stakeStartTime",
-            type: "u64",
+            "name": "stakeStartTime",
+            "type": "u64"
           },
           {
-            name: "lastStakeRedeem",
-            type: "u64",
+            "name": "lastStakeRedeem",
+            "type": "u64"
           },
           {
-            name: "stakeState",
-            type: {
-              defined: "StakeState",
-            },
-          },
-        ],
-      },
-    },
+            "name": "stakeState",
+            "type": {
+              "defined": "StakeState"
+            }
+          }
+        ]
+      }
+    }
   ],
-  types: [
+  "types": [
     {
-      name: "StakeState",
-      type: {
-        kind: "enum",
-        variants: [
+      "name": "StakeState",
+      "type": {
+        "kind": "enum",
+        "variants": [
           {
-            name: "Stake",
+            "name": "Stake"
           },
           {
-            name: "Unstake",
-          },
-        ],
-      },
-    },
+            "name": "Unstake"
+          }
+        ]
+      }
+    }
   ],
-  errors: [
+  "errors": [
     {
-      code: 6000,
-      name: "InvalidNftCollection",
-      msg: "NFT isn't part of collection",
-    },
-  ],
+      "code": 6000,
+      "name": "InvalidNftCollection",
+      "msg": "NFT isn't part of collection"
+    }
+  ]
 };

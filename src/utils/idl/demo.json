@@ -31,11 +31,6 @@
           "isSigner": false
         },
         {
-          "name": "nftMetadata",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
           "name": "mint",
           "isMut": false,
           "isSigner": false
@@ -173,7 +168,7 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "staker",
+            "name": "owner",
             "type": "publicKey"
           },
           {
@@ -222,6 +217,6 @@
     }
   ],
   "metadata": {
-    "address": "81MRLWNW25VrFiUw7usFDwB2cR87kMqzVLXS1xE4YtU6"
+    "address": "9ocJjA6PkoLDqadYxRnJjfLyymiDGEGuKG2ky9fbtCo5"
   }
 }

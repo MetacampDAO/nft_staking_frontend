@@ -16,8 +16,8 @@ import { useEffect, useState } from "react";
 import { PublicKey, Transaction } from "@solana/web3.js";
 import {
   getAllMintOwnedByUser,
-  getAllUserStakeInfo,
-  getUserInfo,
+  getAllUserStakeNft,
+  getUserInfoData,
 } from "@/utils/getPda";
 import {
   createRedeemIx,
@@ -27,17 +27,9 @@ import {
   signAndSendTx,
 } from "@/utils/createIx";
 import { IdlAccounts, Program, ProgramAccount } from "@project-serum/anchor";
-import { setupMintCollection } from "@/utils/initMint";
 import Image from "next/image";
 import { Demo, IDL } from "@/utils/idl/demo";
-import {
-  JsonMetadata,
-  Metadata,
-  Nft,
-  NftWithToken,
-  Sft,
-  SftWithToken,
-} from "@metaplex-foundation/js";
+import { Nft, NftWithToken, Sft, SftWithToken } from "@metaplex-foundation/js";
 
 type UserStakeInfoStruct = IdlAccounts<Demo>["userStakeInfo"];
 type UserInfoStruct = IdlAccounts<Demo>["userInfo"];
@@ -56,6 +48,7 @@ export default function Home() {
   const [allUserStakeInfo, setAllUserStakeInfo] = useState<
     UserStakeInfoType[] | null
   >(null);
+
   const { connection } = useConnection();
   const wallet = useAnchorWallet();
 
@@ -66,16 +59,22 @@ export default function Home() {
           connection,
           wallet,
           IDL,
-          new PublicKey("81MRLWNW25VrFiUw7usFDwB2cR87kMqzVLXS1xE4YtU6")
+          new PublicKey(process.env.NEXT_PUBLIC_PROGRAM_ID!)
         );
-        const allUserStakeInfo = await getAllUserStakeInfo(
+        setNftStakingProgram(program);
+
+        // GET ALL USER STAKE INFO
+        const allUserStakeInfo = await getAllUserStakeNft(
           program,
           wallet.publicKey
         );
-        setNftStakingProgram(program);
-        const userInfo = await getUserInfo(program, wallet.publicKey);
-        setUserInfo(userInfo);
         setAllUserStakeInfo(allUserStakeInfo);
+
+        // GET USER INFO
+        const userInfo = await getUserInfoData(program, wallet.publicKey);
+        setUserInfo(userInfo);
+
+        // GET ALL ELIGIBLE MINT BY USER
         const eligibleMint = await getAllMintOwnedByUser(
           program.provider.connection,
           wallet.publicKey
@@ -99,7 +98,7 @@ export default function Home() {
       tx.add(stakeIx);
       const txSig = await signAndSendTx(connection, tx, wallet);
       console.log(`https://solscan.io/tx/${txSig}?cluster=devnet`);
-      const allUserStakeInfo = await getAllUserStakeInfo(
+      const allUserStakeInfo = await getAllUserStakeNft(
         nftStakingProgram,
         wallet.publicKey
       );
@@ -123,7 +122,10 @@ export default function Home() {
       tx.add(stakeIx);
       const txSig = await signAndSendTx(connection, tx, wallet);
       console.log(`https://solscan.io/tx/${txSig}?cluster=devnet`);
-      const userInfo = await getUserInfo(nftStakingProgram, wallet.publicKey);
+      const userInfo = await getUserInfoData(
+        nftStakingProgram,
+        wallet.publicKey
+      );
       setUserInfo(userInfo);
     }
   };
@@ -139,7 +141,7 @@ export default function Home() {
       tx.add(stakeIx);
       const txSig = await signAndSendTx(connection, tx, wallet);
       console.log(`https://solscan.io/tx/${txSig}?cluster=devnet`);
-      const allUserStakeInfo = await getAllUserStakeInfo(
+      const allUserStakeInfo = await getAllUserStakeNft(
         nftStakingProgram,
         wallet.publicKey
       );
@@ -149,7 +151,10 @@ export default function Home() {
         wallet.publicKey
       );
       setMintInWallet(eligibleMint);
-      const userInfo = await getUserInfo(nftStakingProgram, wallet.publicKey);
+      const userInfo = await getUserInfoData(
+        nftStakingProgram,
+        wallet.publicKey
+      );
       setUserInfo(userInfo);
     }
   };

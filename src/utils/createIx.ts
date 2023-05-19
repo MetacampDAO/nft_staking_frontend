@@ -5,7 +5,7 @@ import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
-import { getProgramPdaAddress } from "./getPda";
+import { getAllUserPda } from "./getPda";
 import { AnchorWallet } from "@solana/wallet-adapter-react";
 import { Demo } from "./idl/demo";
 
@@ -44,13 +44,8 @@ export const createStakeIx = async (
   staker: PublicKey,
   nftMint: PublicKey
 ) => {
-  const {
-    userNftAccount,
-    pdaNftAccount,
-    metadataAddress,
-    userStakeInfo,
-    userInfo,
-  } = await getProgramPdaAddress(program, staker, nftMint);
+  const { userNftAccount, pdaNftAccount, userStakeInfo, userInfo } =
+    await getAllUserPda(program, staker, nftMint);
 
   const ix = await program.methods
     .stake()
@@ -60,7 +55,6 @@ export const createStakeIx = async (
       initializer: staker,
       userNftAccount: userNftAccount,
       pdaNftAccount: pdaNftAccount,
-      nftMetadata: metadataAddress,
       mint: nftMint,
       tokenProgram: TOKEN_PROGRAM_ID,
       associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -75,7 +69,7 @@ export const createRedeemIx = async (
   staker: PublicKey,
   nftMint: PublicKey
 ) => {
-  const { pdaNftAccount, userInfo, userStakeInfo } = await getProgramPdaAddress(
+  const { pdaNftAccount, userInfo, userStakeInfo } = await getAllUserPda(
     program,
     staker,
     nftMint
@@ -101,7 +95,7 @@ export const createUnstakeIx = async (
   nftMint: PublicKey
 ) => {
   const { userNftAccount, pdaNftAccount, userInfo, userStakeInfo } =
-    await getProgramPdaAddress(program, staker, nftMint);
+    await getAllUserPda(program, staker, nftMint);
 
   const ix = await program.methods
     .unstake()
