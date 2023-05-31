@@ -84,8 +84,6 @@ export default function Home() {
     }
   }, [wallet]);
 
-  // Allow user to select a mint and stake
-
   const handleStake = async (mint: PublicKey) => {
     if (wallet && nftStakingProgram && mint) {
       const stakeIx = await createStakeIx(
@@ -197,9 +195,7 @@ export default function Home() {
             {allUserStakeInfo &&
               allUserStakeInfo.map(
                 (userStakeInfo, key) =>
-                  Object.keys(
-                    userStakeInfo.pdaInfo.account.stakeState
-                  ).includes("stake") && (
+                  userStakeInfo.pdaInfo.account.stakeState === 1 && (
                     <ImageCard key={key}>
                       <Image
                         src={userStakeInfo.tokenInfo.json?.image || ""}

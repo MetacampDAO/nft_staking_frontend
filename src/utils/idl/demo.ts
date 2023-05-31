@@ -185,25 +185,7 @@ export type Demo = {
           },
           {
             "name": "stakeState",
-            "type": {
-              "defined": "StakeState"
-            }
-          }
-        ]
-      }
-    }
-  ],
-  "types": [
-    {
-      "name": "StakeState",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Stake"
-          },
-          {
-            "name": "Unstake"
+            "type": "u8"
           }
         ]
       }
@@ -405,25 +387,7 @@ export const IDL: Demo = {
           },
           {
             "name": "stakeState",
-            "type": {
-              "defined": "StakeState"
-            }
-          }
-        ]
-      }
-    }
-  ],
-  "types": [
-    {
-      "name": "StakeState",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Stake"
-          },
-          {
-            "name": "Unstake"
+            "type": "u8"
           }
         ]
       }

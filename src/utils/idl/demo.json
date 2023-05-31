@@ -185,25 +185,7 @@
           },
           {
             "name": "stakeState",
-            "type": {
-              "defined": "StakeState"
-            }
-          }
-        ]
-      }
-    }
-  ],
-  "types": [
-    {
-      "name": "StakeState",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Stake"
-          },
-          {
-            "name": "Unstake"
+            "type": "u8"
           }
         ]
       }
@@ -217,6 +199,6 @@
     }
   ],
   "metadata": {
-    "address": "9ocJjA6PkoLDqadYxRnJjfLyymiDGEGuKG2ky9fbtCo5"
+    "address": "8kiA1BcKb4tnT2QW8oSWAmtkoEdxMoxBtLBPettViJdH"
   }
 }

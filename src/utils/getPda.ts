@@ -2,7 +2,7 @@ import * as anchor from "@project-serum/anchor";
 import { Metaplex, PublicKey } from "@metaplex-foundation/js";
 import { getAssociatedTokenAddress } from "@solana/spl-token";
 import { Demo } from "./idl/demo";
-import { Connection, SystemProgram } from "@solana/web3.js";
+import { Connection } from "@solana/web3.js";
 
 export const getUserInfoData = async (
   program: anchor.Program<Demo>,
